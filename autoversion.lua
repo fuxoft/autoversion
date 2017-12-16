@@ -3,7 +3,7 @@
 -- This is used to automatically update the version of your Lua script.
 -- It looks for a following string in your script file and updates it accordingly:
 
--- [[[[*<= Version '20171215g' =>*]]]]
+-- [[*<= Version '20171216a' =>*]]
 
 -- Note that the initial version has to be exactly 9 characters, 8 numbers and a lowercase letter
 -- It updates ONLY the first occurence of this very special string in the file.
@@ -18,7 +18,7 @@ local function main()
 	print("Read file "..fname..", "..(#txt).." bytes.")
 	local found = false
 	local newversion, oldversion
-	txt = txt:gsub("%[%[%[%[%*<= Version '(.........)' =>%*%]%]%]%]", function(str)
+	txt = txt:gsub("%[%[%*<= Version '(.........)' =>%*%]%]", function(str)
 		found = true
 		oldversion = str
 		local date, letter = str:match '(%d%d%d%d%d%d%d%d)(%l)'
@@ -36,7 +36,7 @@ local function main()
 		end
 		newversion = newdate .. newletter
 		print("New version", newversion)
-		return "[[[[*<= Version '"..newversion.."' =>*]]]]"
+		return "[[*<= Version '"..newversion.."' =>*]]"
 	end, 1)
 	if not found then
 		error("Didn't find the magic version string in the file.")
