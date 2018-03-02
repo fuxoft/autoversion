@@ -1,12 +1,9 @@
 #!/usr/bin/env luajit
 -- Autoversion
--- This is used to automatically update the version of your Lua script.
--- It looks for a following string in your script file and updates it accordingly:
+-- https://github.com/fuxoft/autoversion.lua
 
--- [[*<= Version '20171216a' =>*]]
+-- [[*<= Version '20180302b' =>*]]
 
--- Note that the initial version has to be exactly 9 characters, 8 numbers and a lowercase letter
--- It updates ONLY the first occurence of this very special string in the file.
 
 local function main()
 	local fname = arg[1]
