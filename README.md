@@ -1,16 +1,16 @@
 # autoversion.lua
 
-This sript is used to automatically update the version of your Lua script (or other text file).
+This small script is used to automatically update the version of your Lua script (or other text file).
 
-It looks for the string in your script which is formatted EXACTLY like this...
+It looks for the string in your script which is formatted EXACTLY like this (including the opening and closing double brackets)...
 
 ```
 [[*<= Version '20180302a' =>*]]
 ```
 
-...and updates it to current date, bumping the last letter up if the date is current.
+...and updates the version number to current date, bumping the last letter up if the date is already current.
 
-So, basically, before publishing the current version of your script, you do this:
+So, basically, before publishing the current version of your script anywhere, you do this:
 
 ```
 autoversion.lua myscript.lua
