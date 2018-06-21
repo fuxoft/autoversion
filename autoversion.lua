@@ -2,7 +2,7 @@
 -- Autoversion
 -- https://github.com/fuxoft/autoversion.lua
 
--- [[*<= Version '20180302b' =>*]]
+-- [[*<= Version '20180621a' =>*]]
 
 
 local function main()
@@ -36,7 +36,7 @@ local function main()
 		return "[[*<= Version '"..newversion.."' =>*]]"
 	end, 1)
 	if not found then
-		error("Didn't find the magic version string in the file.")
+		error("Didn't find the magic version string in the file. The magic string example is: [[*<= Version '20171231x' =>*]]")
 	end
 	--local tmpfn = "/tmp/fuxoft_autoversion"..os.time()..".txt"
 	local fd = assert(io.open(fname, "w"))
