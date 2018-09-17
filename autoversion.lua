@@ -2,22 +2,32 @@
 -- Autoversion
 -- https://github.com/fuxoft/autoversion.lua
 
--- [[*<= Version '20180621a' =>*]]
+-- [[*<= Version '20180917a' =>*]]
 
 
 local function main()
 	local fname = arg[1]
+	if fname == '--show-only' then
+		show_only = true
+		fname = arg[2]
+	end
 	assert(fname, "No file name supplied.")
 	local fd = io.open(fname)
 	assert (fd, "Cannot open file: "..fname)
 	local txt = assert(fd:read("*a"))
 	assert(fd:close())
-	print("Read file "..fname..", "..(#txt).." bytes.")
+	if not show_only then
+		print("Read file "..fname..", "..(#txt).." bytes.")
+	end
 	local found = false
 	local newversion, oldversion
 	txt = txt:gsub("%[%[%*<= Version '(.........)' =>%*%]%]", function(str)
 		found = true
 		oldversion = str
+		if show_only then
+			print(oldversion)
+			os.exit()
+		end
 		local date, letter = str:match '(%d%d%d%d%d%d%d%d)(%l)'
 		assert(date and letter, "Invalid version format.")
 		local newdate = os.date("%Y%m%d")
