@@ -2,8 +2,7 @@
 -- Autoversion
 -- https://github.com/fuxoft/autoversion.lua
 
--- [[*<= Version '20180917a' =>*]]
-
+local VERSION = ([[*<= Version '2.0.4+D20200617T105652' =>*]]):match("'(.+)'")
 
 local function main()
 	local fname = arg[1]
@@ -21,34 +20,28 @@ local function main()
 	end
 	local found = false
 	local newversion, oldversion
-	txt = txt:gsub("%[%[%*<= Version '(.........)' =>%*%]%]", function(str)
+	txt = txt:gsub("%[%[%*<= Version '(.-)' =>%*%]%]", function(str)
 		found = true
 		oldversion = str
 		if show_only then
 			print(oldversion)
 			os.exit()
 		end
-		local date, letter = str:match '(%d%d%d%d%d%d%d%d)(%l)'
-		assert(date and letter, "Invalid version format.")
-		local newdate = os.date("%Y%m%d")
-		if date > newdate then
-			error(string.format("New date (%s) is smaller than the original date (%s)", newdate, date))
-		end
-		local newletter = "a"
-		if date == newdate then
-			newletter = string.char(letter:byte() + 1)
-			if newletter > "z" then
-				error("Original version letter is 'z', cannot increase it.")
-			end
-		end
-		newversion = newdate .. newletter
-		print("New version", newversion)
+		print ("Autoversion v"..VERSION)
+		local x,y,z,build = str:match '(%d+)%.(%d+)%.(%d+)%+(.+)'
+		x,y,z = tonumber(x), tonumber(y), tonumber(z)
+		assert(x and y and z and build, "Invalid version format.")
+		local newbuild = os.date("D%Y%m%dT%H%M%S")
+		assert(z >= 0, "Patch # is negative")
+		z = z + 1
+		newversion = x.."."..y.."."..z.."+"..newbuild
 		return "[[*<= Version '"..newversion.."' =>*]]"
 	end, 1)
 	if not found then
-		error("Didn't find the magic version string in the file. The magic string example is: [[*<= Version '20171231x' =>*]]")
+		error("Didn't find the magic version string in the file. The magic string example is: [[*<= Version '1.2.345+D20201231T235959' =>*]]")
 	end
 	--local tmpfn = "/tmp/fuxoft_autoversion"..os.time()..".txt"
+	--os.exit()
 	local fd = assert(io.open(fname, "w"))
 	print("The updated file follows:")
 	print("-------------------------------------------")
