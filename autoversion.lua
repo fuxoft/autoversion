@@ -2,7 +2,7 @@
 -- Autoversion
 -- https://github.com/fuxoft/autoversion.lua
 
-local VERSION = ([[*<= Version '2.0.4+D20200617T105652' =>*]]):match("'(.+)'")
+local VERSION = ([[*<= Version '2.0.5+D20200617T110930' =>*]]):match("'(.+)'")
 
 local function main()
 	local fname = arg[1]
@@ -30,7 +30,10 @@ local function main()
 		print ("Autoversion v"..VERSION)
 		local x,y,z,build = str:match '(%d+)%.(%d+)%.(%d+)%+(.+)'
 		x,y,z = tonumber(x), tonumber(y), tonumber(z)
-		assert(x and y and z and build, "Invalid version format.")
+		if not (x and y and z and build) then
+			found = false
+			return
+		end
 		local newbuild = os.date("D%Y%m%dT%H%M%S")
 		assert(z >= 0, "Patch # is negative")
 		z = z + 1
