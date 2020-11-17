@@ -18,7 +18,7 @@ autoversion.lua myscript.lua
 
 ...and your script's version is automatically updated.
 
-Not that autoversion only updates the third numeric value (the PATCH number). If you need to change other values, just use your standard text editor before / after running autoversion.
+Note that autoversion only updates the third numeric value (the PATCH number). If you need to change other values, just use your standard text editor before / after running autoversion.
 
 If your script is in Lua, the special version string is usually preceded by "--" comment indicator but there can be other characters before and after this special string, so you can e.g. do this in your script:
 
