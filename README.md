@@ -2,7 +2,8 @@
 
 This small script is used to automatically update the version of your Lua script (or other text file). The format is compatible with the [semantic versioning](https://semver.org/) standard.
 
-It looks for the string in your script which is formatted EXACTLY like this (including the opening and closing double brackets)...
+
+This script (`autoversion.lua`) looks for the string in your script (any text file) which is formatted EXACTLY like this (including the opening and closing double brackets)...
 
 ```
 [[*<= Version '1.5.99+D20201231T235959' =>*]]
