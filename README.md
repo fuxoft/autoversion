@@ -1,4 +1,4 @@
-# autoversion.janet
+# Autoversion
 
 This small script (written in [Janet](https://janet-lang.org/)) is used to automatically update the version of your source files, scripts or any other text file. The version format is compatible with the [semantic versioning](https://semver.org/) standard.
 
