@@ -3,7 +3,7 @@
 # https://github.com/fuxoft/autoversion.lua xxxxxxxxxxxxxxxxxx
 
 (def *version* (first (peg/match ~(* (thru "'") (<- (to "'")))
-                                 "[[*<= Version '3.0.14+D19230725T185200' =>*]]")))
+                                 "[[*<= Version '3.1.0+D20230726T183953' =>*]]")))
 
 (defn load [fname]
   (def fd (file/open fname :r))
@@ -74,5 +74,7 @@
     original-string))
 
 (assert (not= (string original-string) (string new-string)))
+
+(save filename new-string)
 
 (printf "Updated %s version: %s -> %s." filename original-version new-version)
