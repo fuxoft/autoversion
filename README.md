@@ -10,7 +10,7 @@ This script (`autoversion.janet`) looks for the **first occurence** of the strin
 
 This seemingly bizarre format was chosen so that there is zero chance of this string appearing elsewhere in your file.
 
-The version string between the single quote is always:
+The version string between the single quotes is always:
 
 `<integer> "." <integer> "." <integer> "+D" <8 digits> "T" <6 digits>`
 
@@ -18,7 +18,7 @@ So, basically, before publishing the current version of your script anywhere (e.
 
 The invocation is:
 
-```autoversion.janet <options> <file name>```
+```autoversion.janet <options> <text file name>```
 
 The possible options are:
 
