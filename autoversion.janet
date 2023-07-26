@@ -2,7 +2,7 @@
 # Autoversion
 # https://github.com/fuxoft/autoversion.lua xxxxxxxxxxxxxxxxxx
 
-(def *version* (first (peg/match ~(* (thru "'") (<- (to "'")))
+(def my-version (first (peg/match ~(* (thru "'") (<- (to "'")))
                                  "[[*<= Version '3.1.0+D20230726T183953' =>*]]")))
 
 (defn load [fname]
