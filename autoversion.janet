@@ -1,9 +1,9 @@
 #!/usr/bin/env janet
 # Autoversion
-# https://github.com/fuxoft/autoversion.lua xxxxxxxxxxxxxxxxxx
+# https://github.com/fuxoft/autoversion
 
 (def my-version (first (peg/match ~(* (thru "'") (<- (to "'")))
-                                 "[[*<= Version '3.1.1+D20230726T191115' =>*]]")))
+                                 "[[*<= Version '3.1.2+D20230727T063628' =>*]]")))
 
 (defn load [fname]
   (def fd (file/open fname :r))
