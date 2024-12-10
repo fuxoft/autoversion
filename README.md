@@ -1,30 +1,34 @@
 # Autoversion
 
-This small script (written in [Janet](https://janet-lang.org/)) is used to automatically update the version of your source files, scripts or any other text file. The version format is compatible with the [semantic versioning](https://semver.org/) standard.
+This small script is used to automatically update the version of your source files, scripts or any other text file. The version format is compatible with the [semantic versioning](https://semver.org/) standard.
 
-This script (`autoversion.janet`) looks for the **first occurence** of the string in your text file which is formatted like this (including spaces and the opening and closing double brackets)...
+This script (`autoversion.lua`) looks for the **first occurence** of the string in your text file which is formatted like this (including spaces and the opening and closing double brackets)...
 
 `[[*<= Version '1.5.99+D20201231T235959' =>*]]`
 
-...and updates the version number and the build metadata (the datetime string after '+').
+...and automatically updates the version number and the build metadata (the datetime string after '+').
 
-This seemingly bizarre format was chosen so that there is zero chance of this string appearing elsewhere in your file.
+This seemingly bizarre format was chosen so that there is zero chance of this string randomly appearing elsewhere in your file.
 
-The version string between the single quotes is always:
+The version string between the single quotes is always in the following format:
 
 `<integer> "." <integer> "." <integer> "+D" <8 digits> "T" <6 digits>`
 
-So, basically, before publishing the current version of your script anywhere (e.g. on GitHub), you invoke `autoversion` on it and your script's version is automatically updated (the version number is incremented and timestamp is updated).
+Inteded workflow: Before publishing the current version of your script anywhere (e.g. on your server or on GitHub), you invoke `autoversion` on it and your script's version is automatically updated (the version number is incremented and timestamp is updated).
 
 The invocation is:
 
-```autoversion.janet <options> <text file name>```
+```autoversion.lua [option] <text file name>```
 
-The possible options are:
+The possible values for `[option]` are:
 
 * `-v3` - Increment the third number, i.e. patch version. This is the **default behavior** if no option is provided.
 * `-v2` - Increment the second number, i.e. minor version, and set the third number to zero.
 * `-v1` - Increment the first number, i.e. major version, and set the second and third numbers to zero.
+* `--show-only` -  Prints the current version string contained in the file and exits. Does not modify the file.
+* `-v` - Prints the current version of Autoversion and exits.
+
+Other options are silently ignored. Only single option can be provided. 
 
 Of course you are also free to edit the version string in your file manually at any time.
 
