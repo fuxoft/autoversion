@@ -34,7 +34,7 @@ Of course you are also free to edit the version string in your file manually at 
 
 The version string can be included in your script as a comment but it can also be used inside your script programmatically for whatever purpose because there can be any characters (i.e. program statements) immediately before and after it, even on the same line! See the examples below.
 
-## Specific usage examples:
+## Usage examples for specific languages:
 
 ### Lua
 

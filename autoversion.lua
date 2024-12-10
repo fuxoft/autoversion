@@ -1,8 +1,8 @@
 #!/usr/bin/env luajit
 -- Autoversion
--- https://github.com/fuxoft/autoversion.lua
+-- https://github.com/fuxoft/autoversion
 
-local VERSION = ([[*<= Version '2.0.5+D20200617T110930' =>*]]):match("'(.+)'")
+local VERSION = ([[*<= Version '2.1.2+D20241210T123623' =>*]]):match("'(.+)'")
 
 local function main()
 	local fname = arg[1]
@@ -57,12 +57,8 @@ local function main()
 		error("Didn't find the magic version string in the file. The magic string example is: [[*<= Version '1.2.345+D20201231T235959' =>*]]")
 	end
 	local fd = assert(io.open(fname, "w"))
-	print("The updated file follows:")
-	print("-------------------------------------------")
-	print(txt)
 	assert(fd:write(txt))
 	assert(fd:close())
-	print("------------------------------------------- OK")
 	print("Succesfully updated file ".. fname .. " from version " .. oldversion .. " to "..newversion)
 end
 
